@@ -12,3 +12,7 @@ code {
 .App {
   text-align: center;
 }
+
+div {
+  cursor: pointer;
+}
