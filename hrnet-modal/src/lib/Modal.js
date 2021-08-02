@@ -1,19 +1,27 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 
 const Modal = (props) => {
    return (
-        <ModalBackground isOpen={props.isOpen} onClick={props.onClose}>
+        <ModalBackground isOpen={props.isOpen} onClick={props.onClickOutside ? props.onClickOutside : props.onConfirm}>
             <ModalContainer onClick={(e) => e.stopPropagation()}>
-                    <CloseButton onClick={props.onClose}>
+                    <CloseButton onClick={props.onConfirm}>
                         <FontAwesomeIcon icon={faCheck} />
                     </CloseButton>
-                    <ModalMessage> Employee Created </ModalMessage>
+                    <ModalMessage> {props.message ? props.message : "Whatever you did, it is confirmed"} </ModalMessage>
             </ModalContainer>           
        </ModalBackground>
    )
+}
+
+Modal.propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    onConfirm: PropTypes.func.isRequired,
+    message: PropTypes.string,
+    onClickOutside: PropTypes.func,
 }
 
 export default Modal;
@@ -37,7 +45,7 @@ const ModalBackground = styled.div`
 `
 
 const ModalContainer = styled.div`
-    width: 300px;
+    width: fit-content;
     height: 60px;
     border-radius: 5px;
     background-color: white;
@@ -62,5 +70,6 @@ const CloseButton = styled.button`
 
 const ModalMessage = styled.span`
     color: "#32D7F0";
-    width: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
 `

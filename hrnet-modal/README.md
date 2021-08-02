@@ -1,70 +1,85 @@
-# Getting Started with Create React App
+# Plugin to add the most basic Modal component for HRnet project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A turnkey Modal React-component for OpenClassrooms HRnet project. It's main functionnality is to appear upon employee creation to notify the user.
 
-## Available Scripts
+## Features
+- Dynamic diplay control
+- Lock the webpage controls as long as the modal is shown
+- Provides 2 actions: click outside & confirm
 
-In the project directory, you can run:
+## Get started
 
-### `yarn start`
+### Download
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+[hrnet-modal](https://www.npmjs.com/package/hrnet-modal)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Requirements
 
-### `yarn test`
+- React 17.0.2+
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Installation
 
-### `yarn build`
+- using npm
+  `npm install hrnet-modal`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- using yarn
+  `yarn add hrnet-modal`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Usage
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Import the plugin from node_modules in your React component.
+The Modal requires 2 props to work: 
+- `isOpen`(boolean): variable controlling the display of the modal
+- `onConfirm`(function): action triggered when clicking on the 'check' icon (& triggered on clicking outside the modal if no action is provided for this action)
+The Modal has 2 optionnal props: 
+- `message`(string): personnalized message written on the modal
+- `onClickOutside`(function): action triggered when clicking outside the modal
 
-### `yarn eject`
+_ExampleComponent1.js_
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```javascript
+import React, { useState } from "react";
+import Modal from "hrnet-modal";
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+const ExampleComponent1 = () => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+  const toggleModal = () => setModalIsOpen(!modalIsOpen);
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+  return (
+    <div className="App">
+      <div onClick={toggleModal}>
+        Click here to open modal
+      </div>
 
-## Learn More
+      <Modal isOpen={modalIsOpen} onConfirm={toggleModal}/>
+    </div>
+  );
+}
+export default ExampleComponent1;
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+_ExampleComponent2.js_
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```javascript
+import React, { useState } from "react";
+import Modal from "hrnet-modal";
 
-### Code Splitting
+const ExampleComponent2 = () => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+  const toggleModal = () => setModalIsOpen(!modalIsOpen);
+  const handleClickOutsideModal = () => console.log("Oopsi, you clicked outside the modal !");
 
-### Analyzing the Bundle Size
+  return (
+    <div className="App">
+      <div onClick={toggleModal}>
+        Click here to open modal
+      </div>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+      <Modal isOpen={modalIsOpen} onConfirm={toggleModal} message="Employee successfully created" onClickOutside={handleClickOutsideModal}/>
+    </div>
+  );
+}
+export default ExampleComponent2;
+```

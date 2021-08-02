@@ -1,5 +1,5 @@
 import './style.css';
-import Modal from './lib/component/Modal';
+import Modal from './lib/Modal';
 import { useState } from 'react';
 
 const App = () => {
@@ -13,7 +13,7 @@ const App = () => {
         Click here to open modal
       </div>
 
-      <Modal isOpen={modalIsOpen} onClose={toggleModal}/>
+      <Modal isOpen={modalIsOpen} onConfirm={toggleModal}/>
     </div>
   );
 }
