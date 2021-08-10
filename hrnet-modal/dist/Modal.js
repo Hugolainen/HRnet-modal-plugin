@@ -11,9 +11,7 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _reactFontawesome = require("@fortawesome/react-fontawesome");
-
-var _freeSolidSvgIcons = require("@fortawesome/free-solid-svg-icons");
+var _checkMark = _interopRequireDefault(require("./check-mark.svg"));
 
 var _templateObject, _templateObject2, _templateObject3, _templateObject4;
 
@@ -29,8 +27,9 @@ const Modal = props => {
     onClick: e => e.stopPropagation()
   }, /*#__PURE__*/_react.default.createElement(CloseButton, {
     onClick: props.onConfirm
-  }, /*#__PURE__*/_react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
-    icon: _freeSolidSvgIcons.faCheck
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: _checkMark.default,
+    alt: "check-mark"
   })), /*#__PURE__*/_react.default.createElement(ModalMessage, null, " ", props.message ? props.message : "Whatever you did, it is confirmed", " ")));
 };
 
@@ -47,6 +46,6 @@ const ModalBackground = _styledComponents.default.div(_templateObject || (_templ
 
 const ModalContainer = _styledComponents.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    width: fit-content;\n    height: 60px;\n    border-radius: 5px;\n    background-color: white;\n    padding:0;\n    cursor: default;\n    display: flex;\n    align-items: center;\n    border: 1px solid rgba(0,0,0,0.2);\n    box-shadow: 5px 5px 30px -6px rgba(0,0,0,0.2);\n"])));
 
-const CloseButton = _styledComponents.default.button(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    height: 100%;\n    width: 60px;\n    cursor: pointer;\n    border-radius: 4px 0 0 4px;\n    background-color: #32D7F0;\n    color: white;\n    border: 0;\n    font-size: 30px;\n"])));
+const CloseButton = _styledComponents.default.button(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    height: 100%;\n    width: 60px;\n    cursor: pointer;\n    border-radius: 4px 0 0 4px;\n    background-color: #32D7F0;\n    padding:auto;\n    border: 0;\n\n    img {\n        max-width: 40px;\n    }\n"])));
 
 const ModalMessage = _styledComponents.default.span(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    color: \"#32D7F0\";\n    margin-left: 20px;\n    margin-right: 20px;\n"])));

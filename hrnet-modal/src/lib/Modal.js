@@ -1,15 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import checkMark from './check-mark.svg';
 
 const Modal = (props) => {
    return (
         <ModalBackground isOpen={props.isOpen} onClick={props.onClickOutside ? props.onClickOutside : props.onConfirm}>
             <ModalContainer onClick={(e) => e.stopPropagation()}>
                     <CloseButton onClick={props.onConfirm}>
-                        <FontAwesomeIcon icon={faCheck} />
+                        <img src={checkMark} alt="check-mark" />
                     </CloseButton>
                     <ModalMessage> {props.message ? props.message : "Whatever you did, it is confirmed"} </ModalMessage>
             </ModalContainer>           
@@ -63,9 +62,12 @@ const CloseButton = styled.button`
     cursor: pointer;
     border-radius: 4px 0 0 4px;
     background-color: #32D7F0;
-    color: white;
+    padding:auto;
     border: 0;
-    font-size: 30px;
+
+    img {
+        max-width: 40px;
+    }
 `
 
 const ModalMessage = styled.span`
